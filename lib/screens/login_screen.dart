@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:sevad_mobile/providers/login_form_provider.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +8,7 @@ import 'package:sevad_mobile/ui/input_decorations.dart';
 import 'package:sevad_mobile/widgets/card_container.dart';
 import 'package:sevad_mobile/widgets/widgets.dart';
 import 'package:sevad_mobile/services/services.dart';
+import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -108,23 +111,52 @@ class _LoginForm extends StatelessWidget {
 
                         loginForm.isLoading = true;
 
-                        await Future.delayed(Duration(seconds: 2));
+                        checkLogin(
+                            loginForm.username, loginForm.password, context);
 
-                        // TODO: validar si el login es correcto
-                        //NotificationsService.showSnackbar('Error al fer login');
-                        loginForm.isLoading = false;
+                        // await Future.delayed(Duration(seconds: 2));
 
-                        print(loginForm.username);
-                        print(loginForm.password);
+                        // // TODO: validar si el login es correcto
+                        // //NotificationsService.showSnackbar('Error al fer login');
+                        // loginForm.isLoading = false;
 
-                        mostrarAlert(context);
+                        // print(loginForm.username);
+                        // print(loginForm.password);
 
-                        Navigator.pushReplacementNamed(context, 'home');
+                        // mostrarAlert(context);
+
+                        // Navigator.pushReplacementNamed(context, 'home');
                       })
           ],
         ),
       ),
     );
+  }
+
+  void checkLogin(
+      String valuerId, String password, BuildContext context) async {
+    print('Abans http.xx');
+
+    //HTTP.GET example without parameters
+    //var response = await http.get(Uri.parse("http://192.168.0.36:8080/goodDay")
+
+    //HTTP.POST example with parameters
+    var response = await http.post(
+      Uri.parse("http://192.168.0.36:8080/login"),
+      headers: <String, String>{"Content-Type": "application/json"},
+      body: jsonEncode(
+          <String, String>{"valuer_id": valuerId, "password": password}),
+    );
+    if (response.statusCode != 201) {
+      mostrarAlert(context);
+    } else {
+      Navigator.pushReplacementNamed(context, 'home');
+    }
+
+    print('Després http.xx');
+    print('El resultat de la crida a la funció es:');
+    print(response.statusCode);
+    print(response.body);
   }
 
   void mostrarAlert(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class MapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,17 +22,18 @@ class HomeScreen extends StatelessWidget {
       //   backgroundColor: Colors.white,
       //   shadowColor: Colors.black,
       // ),
-      body: Center(child: Text('HomeScreen')),
+      body: Center(child: Text('Soc el mapa, tot i que encara no ho sembli')),
 
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
-        focusColor: Colors.black,
+        // backgroundColor: Colors.white,
+        // focusColor: Colors.black,
         child: Icon(
           Icons.arrow_back,
-          color: Colors.black,
+          //color: Colors.black,
         ),
         onPressed: () {
-          Navigator.pop(context);
+          Navigator.pushReplacementNamed(context, 'list');
+          //Navigator.pop(context);
         },
       ),
     );

@@ -12,6 +12,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Sevad Mobile',
         initialRoute: 'login',
-        routes: {'login': (_) => LoginScreen(), 'home': (_) => HomeScreen()});
+        routes: {
+          'login': (_) => LoginScreen(),
+          'list': (_) => ListScreen(),
+          'map': (_) => MapScreen()
+        });
   }
 }
