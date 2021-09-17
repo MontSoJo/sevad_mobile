@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sevad_mobile/widgets/widgets.dart';
 import 'package:sevad_mobile/services/services.dart';
 
 class ListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final visitsService = Provider.of<VisitsService>(context);
-    //final valuerService = Provider.of<ValuerService>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -24,15 +22,19 @@ class ListScreen extends StatelessWidget {
           )
         ],
       ),
-      body: ListView.builder(
-          itemCount: visitsService.visits.length,
-          itemBuilder: (BuildContext context, int index) => GestureDetector(
-              onTap: () {
-                const int dummy = 1;
-              },
-              child: VisitCard(
-                visit: visitsService.visits[index],
-              ))),
+      //   title: Text(''),
+      //   backgroundColor: Colors.white,
+      //   shadowColor: Colors.black,
+      // ),
+      body: ListView(padding: EdgeInsets.all(10.0), children: <Widget>[
+        _cardVisit(),
+        SizedBox(height: 10),
+        _cardVisit(),
+        SizedBox(height: 10),
+        _cardVisit(),
+        SizedBox(height: 10),
+      ]),
+
       floatingActionButton: FloatingActionButton(
         // backgroundColor: Colors.white,
         // focusColor: Colors.black,
@@ -46,5 +48,20 @@ class ListScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Widget _cardVisit() {
+    return Card(
+        elevation: 10.0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        child: Column(children: <Widget>[
+          Text('Nom i Cognoms de la persona'),
+          SizedBox(height: 5),
+          Text('Adreça'),
+          SizedBox(height: 5),
+          Text('Telèfon'),
+          SizedBox(height: 5),
+        ]));
   }
 }

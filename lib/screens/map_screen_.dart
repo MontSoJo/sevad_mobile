@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+/*
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapScreen extends StatelessWidget {
+
+  final List<LatLng> _markerPositions = [
+    LatLng(44.421, 10.404),
+    LatLng(45.683, 10.839),
+    LatLng(44.421, 10.404),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,23 +35,12 @@ class MapScreen extends StatelessWidget {
       body: FlutterMap(
         options: MapOptions(
             center: new LatLng(41.42044, 2.20285), minZoom: 10.0, zoom: 18.0),
+            onTap: (_) => _popupLayerController.hidePopup(),
         layers: [
           new TileLayerOptions(
               urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-              subdomains: ['a', 'b', 'c']),
-          MarkerLayerOptions(markers: [
-            Marker(
-                width: 50.0,
-                height: 50.0,
-                point: LatLng(41.42044, 2.20285),
-                builder: (context) => Container(
-                    child: IconButton(
-                        icon: Icon(Icons.location_on),
-                        color: Colors.blue,
-                        iconSize: 50.0,
-                        onPressed: () {
-                          print('Marker tapped');
-                        }))),
+              subdomains: ['a', 'b', 'c'])),
+
           ]),
         ],
       ),
@@ -68,3 +65,4 @@ class MapScreen extends StatelessWidget {
     );
   }
 }
+*/

@@ -150,7 +150,11 @@ class _LoginForm extends StatelessWidget {
     if (response.statusCode != 201) {
       mostrarAlert(context);
     } else {
-      Navigator.pushReplacementNamed(context, 'home');
+      // var response2 = await http
+      //     .get(Uri.parse("http://192.168.0.36:8080/proceeding/000091463"));
+      // print(response2.body);
+
+      Navigator.pushReplacementNamed(context, 'list');
     }
 
     print('Després http.xx');
